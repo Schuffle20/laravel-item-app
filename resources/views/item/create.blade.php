@@ -39,6 +39,12 @@
                 </div>
             </form>
         </div>
+
+        @if (session('success'))
+            <div class="my-5 inline-block float-right p-4 mb-4 text-sm text-green-800 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-900" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
     </div>
 
 </body>

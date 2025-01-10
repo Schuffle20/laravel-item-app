@@ -14,7 +14,7 @@ class ItemController extends Controller
     {
         //
         $items = Item::all();
-        return $items;
+        return view('item.index', compact('items'));
     }
 
     /**
@@ -41,7 +41,7 @@ class ItemController extends Controller
         $item->description = $request->description;
         $item->save();
 
-        return back();
+        return redirect()->route('item.index')->with('success', 'Item created successfully!');
     }
 
     /**
@@ -74,5 +74,11 @@ class ItemController extends Controller
     public function destroy(string $id)
     {
         //
+        $item = Item::find($id);
+        if($item){
+            $item->delete();
+            return back()->with('success', 'Item deleted successfully!');
+        }
+        return back()->with('error', 'Item not found!');
     }
 }
