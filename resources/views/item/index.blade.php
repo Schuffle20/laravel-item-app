@@ -61,7 +61,7 @@
                                 CC
                             </td>
                             <td class="px-6 py-4">
-                                <button type="button" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">Edit</button>
+                                <a href="{{route('item.edit', $item->id)}}" type="button" class="cursor-pointer text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">Edit</a>
                                 <form action="{{ route('item.destroy', $item->id) }}" class="inline-block" method="post">
                                    @csrf
                                    @method('delete')

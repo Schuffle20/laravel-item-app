@@ -58,6 +58,8 @@ class ItemController extends Controller
     public function edit(string $id)
     {
         //
+        $item = Item::find($id);
+        return view('item.edit', compact('item'));
     }
 
     /**
@@ -66,6 +68,14 @@ class ItemController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $item = Item::find($id);
+        $item->name = $request->name;
+        $item->stock = $request->stock;
+        $item->price = $request->price;
+        $item->description = $request->description;
+        $item->update();
+
+        return redirect()->route('item.index')->with('success', 'item updated successfully');
     }
 
     /**
