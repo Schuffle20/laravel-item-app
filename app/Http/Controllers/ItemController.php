@@ -54,6 +54,8 @@ class ItemController extends Controller
     public function show(string $id)
     {
         //
+        $item = Item::find($id);
+        return view('item.detail', compact('item'));
     }
 
     /**
@@ -62,8 +64,9 @@ class ItemController extends Controller
     public function edit(string $id)
     {
         //
+        $categories = Category::all();
         $item = Item::find($id);
-        return view('item.edit', compact('item'));
+        return view('item.edit', compact('item', 'categories'));
     }
 
     /**
@@ -77,6 +80,8 @@ class ItemController extends Controller
         $item->stock = $request->stock;
         $item->price = $request->price;
         $item->description = $request->description;
+        $item->status = $request->status;
+        $item->category_id = $request->category_id;
         $item->update();
 
         return redirect()->route('item.index')->with('success', 'item updated successfully');

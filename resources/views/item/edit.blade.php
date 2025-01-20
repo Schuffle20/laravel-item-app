@@ -40,9 +40,9 @@
                         <label for="categories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose a Category</label>
                         <select id="categories" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Choose a category</option>
-                            {{-- @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                            @endforeach --}}
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}" {{ $item->category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                            @endforeach
 
                         </select>
                     </div>
@@ -59,7 +59,11 @@
                         </div>
 
                     </div>
-                    <button type="submit" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Update</button>
+                    <div class="flex">
+                        <a href="{{route('item.index')}}" class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Back</a>
+                        <button type="submit" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Update</button>
+                    </div>
+
                 </div>
             </form>
         </div>
