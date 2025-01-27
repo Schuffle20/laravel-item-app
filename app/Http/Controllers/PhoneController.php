@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePhoneRequest;
 use App\Http\Requests\UpdatePhoneRequest;
+use App\Models\People;
 use App\Models\Phone;
 
 class PhoneController extends Controller
@@ -14,6 +15,8 @@ class PhoneController extends Controller
     public function index()
     {
         //
+        $phones = Phone::all();
+        return view('phone.index', compact('phones'));
     }
 
     /**
@@ -22,6 +25,8 @@ class PhoneController extends Controller
     public function create()
     {
         //
+        $persons = People::all();
+        return view('phone.create', compact('persons'));
     }
 
     /**
@@ -30,6 +35,12 @@ class PhoneController extends Controller
     public function store(StorePhoneRequest $request)
     {
         //
+        $phone = new Phone();
+        $phone->phone_number = $request->phone_number;
+        $phone->person_id = $request->person_id;
+        $phone->save();
+
+        return back()->with('success', 'Phone Created Successfully');
     }
 
     /**
