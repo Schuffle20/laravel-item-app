@@ -23,6 +23,16 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             //
+            'name'=>'required|string',
+            'description'=>'required|string'
+        ];
+    }
+
+    public function messages()
+    {
+        return[
+            'name.required'=> 'နာမည်ထည့်ပေးပါ',
+            'description.required'=> 'အကြောင်းအရာထည့်ပေးပါ'
         ];
     }
 }

@@ -36,6 +36,14 @@ class ItemController extends Controller
         //
         // return $request;
 
+        $request->validate([
+            'name' => 'required|string',
+            'price' => 'required|integer',
+            'stock' => 'required|integer',
+            'description' => 'required|string',
+            'category_id' => 'required|integer'
+        ]);
+
         $item = new Item();
         $item->name = $request->name;
         $item->price = $request->price;

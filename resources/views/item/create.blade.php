@@ -16,33 +16,48 @@
                 <div class="grid gap-4 mb-6">
                     <div class="mb-2">
                         <label for="name" class="block-mb-2 text-sm font-medium text-gray-900 dark-text-white">Name</label>
-                        <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full">
+                        <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full @error('name') border-red-500 @enderror" value="{{old('name')}}">
+                        @error('name')
+                            <p class="text-red-600">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-2">
                         <label for="price" class="block-mb-2 text-sm font-medium text-gray-900 dark-text-white">Price</label>
-                        <input type="number" id="price" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full">
+                        <input type="number" id="price" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full @error('price') border-red-500 @enderror" value="{{old('price')}}">
+                        @error('price')
+                            <p class="text-red-600">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-2">
                         <label for="stock" class="block-mb-2 text-sm font-medium text-gray-900 dark-text-white">Stock</label>
-                        <input type="number" id="stock" name="stock" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full">
+                        <input type="number" id="stock" name="stock" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full @error('stock') border-red-500 @enderror" value="{{old('stock')}}">
+                        @error('stock')
+                            <p class="text-red-600">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-2">
                         <label for="description" class="block-mb-2 text-sm font-medium text-gray-900 dark-text-white">Description</label>
-                        <textarea type="text" id="description" name="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full"></textarea>
+                        <textarea type="text" id="description" name="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full @error('description') border-red-500 @enderror">{{old('description')}}</textarea>
+                        @error('description')
+                            <p class="text-red-600">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-2">
                         <label for="categories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose a Category</label>
-                        <select id="categories" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected>Choose a category</option>
+                        <select id="categories" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('category_id') border-red-500 @enderror">
+                            <option disabled {{ old('category_id') ? '' : 'selected' }}>Choose a category</option>
                             @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
                             @endforeach
 
                         </select>
+                        @error('category_id')
+                            <p class="text-red-600">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-2">
