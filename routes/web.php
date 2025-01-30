@@ -18,4 +18,5 @@ Route::resource('/item', ItemController::class);
 Route::resource('/category', CategoryController::class);
 Route::resource('/person', PeopleController::class);
 Route::resource('/phone', PhoneController::class);
+Route::get('/search', [ItemController::class, 'search'])->name('item.search');
 

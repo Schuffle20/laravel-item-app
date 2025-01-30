@@ -9,7 +9,7 @@
 </head>
 <body class="py-12">
 
-    <div class="container max-w-3xl mx-auto">
+    <div class="container max-w-5xl mx-auto">
         <div class="text-right">
             <a href="{{ route('item.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                 Create Items
@@ -18,6 +18,16 @@
 
 
         <div class="relative overflow-x-auto my-5">
+            <form action="{{route('item.search')}}" method="GET">
+                <div class="mb-2">
+                    <input type="text" id="name" name="query" class="bg-gray-50 border border-gray-300 text-gray-900 my-4 mx-4 text-sm rounded-lg" value="{{old('name')}}">
+                    <button type="submit" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Search</button>
+                    <a href="{{route('item.index')}}" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mx-2">Item List</a>
+                </div>
+
+            </form>
+
+
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -54,7 +64,7 @@
 
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{$loop->iteration}}
+                                {{$item->id}}
                             </th>
                             <td class="px-6 py-4">
                                 {{$item->name}}
@@ -92,6 +102,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="px-6 py-6">
+                {{ $items->links('pagination::tailwind') }}
+            </div>
         </div>
         @if (session('success'))
             <div class="inline-block float-right p-4 mb-4 text-sm text-green-800 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-900" role="alert">
